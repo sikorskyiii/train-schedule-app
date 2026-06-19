@@ -16,7 +16,7 @@ export class AuthService {
             data: { email, password: hashedPassword }
         });
 
-        return { access_token: this.jwtService.sign({ sub: user.id, email: user.email }) }
+        return { access_token: this.jwtService.sign({ sub: user.id, email: user.email, role: user.role }) }
     }
 
     async login(email: string, password: string) {
@@ -26,6 +26,6 @@ export class AuthService {
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) throw new UnauthorizedException("Invalid password.");
 
-        return { access_token: this.jwtService.sign({ sub: user.id, email: user.email }) }
+        return { access_token: this.jwtService.sign({ sub: user.id, email: user.email, role: user.role }) }
     }
 }

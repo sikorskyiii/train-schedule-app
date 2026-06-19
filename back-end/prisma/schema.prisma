@@ -25,7 +25,6 @@ model Train {
 }
 
 enum Role {
-  GUEST
   USER
   ADMIN
 }
