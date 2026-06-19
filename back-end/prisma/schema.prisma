@@ -1,0 +1,27 @@
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+}
+
+model Train {
+  id            Int      @id @default(autoincrement())
+  trainNumber   String
+  fromStation   String
+  toStation     String
+  departureTime DateTime
+  arrivalTime   DateTime
+  createdAt     DateTime @default(now())
+}
+
+enum Role {
+  GUEST
+  USER
+  ADMIN
+}
+
+datasource db {
+  provider  = "postgresql"
+}
