@@ -10,9 +10,13 @@ import { RolesGuard } from "./roles.guard";
 @Module({
     imports: [
         PrismaModule,
-        JwtModule.register({
-            secret: 'process.env.JWT_SECRET',
-            signOptions: { expiresIn: '1h' },
+        JwtModule.registerAsync({
+            useFactory: () => ({
+                secret: process.env.JWT_SECRET,
+                signOptions: {
+                    expiresIn: '1h'
+                },
+            })
         })
     ],
     controllers: [AuthController],
