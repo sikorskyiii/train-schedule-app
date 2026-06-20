@@ -1,66 +1,86 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+import { useEffect, useState } from "react";
+import axiosInstance from "@/lib/api";
+import { isAuthenticated, getToken } from "@/lib/auth";
+import TrainTable from "@/app/components/TrainTable";
+import TrainForm from "@/app/components/TrainForm";
+import { jwtDecode } from "jwt-decode";
+
+type Train = {
+  id?: number;
+  trainNumber: string;
+  fromStation: string;
+  toStation: string;
+  departureTime: string;
+  arrivalTime: string;
+}
 
 export default function Home() {
+  const [trains, setTrains] = useState<Train[]>([]);
+  const [isAuth, setIsAuth] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [editTrain, setEditTrain] = useState<Train | null>(null);
+
+  useEffect(() => {
+    fetchTrains();
+    const auth = isAuthenticated();
+    setIsAuth(auth);
+    if (auth) {
+      const token = getToken();
+      const decoded: any = jwtDecode(token!);
+      setIsAdmin(decoded.role === "ADMIN");
+    }
+  }, []);
+
+  const fetchTrains = async () => {
+    const res = await axiosInstance.get("/trains");
+    setTrains(res.data);
+  }
+
+  const handleCreate = async (data: Train) => {
+    await axiosInstance.post("/trains", data);
+    fetchTrains();
+    setShowForm(false);
+  }
+
+  const handleEdit = (train: Train) => {
+    setEditTrain(train);
+    setShowForm(true);
+  }
+
+  const handleUpdate = async (data: Train) => {
+    await axiosInstance.patch(`/trains/${editTrain?.id}`, data);
+    fetchTrains();
+    setShowForm(false);
+    setEditTrain(null);
+  }
+
+  const handleDelete = async (id: number) => {
+    await axiosInstance.delete(`/trains/${id}`);
+    fetchTrains();
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main>
+      <h1>Train Schedule</h1>
+      {isAuth && !showForm && (
+        <button onClick={() => setShowForm(true)}>Add Train</button>
+      )}
+      {showForm && (
+        <TrainForm
+          onSubmit={editTrain ? handleUpdate : handleCreate}
+          onCancel={() => { setShowForm(false); setEditTrain(null); }}
+          initialData={editTrain ?? undefined}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      )}
+      <TrainTable
+        trains={trains}
+        isAuth={isAuth}
+        isAdmin={isAdmin}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </main>
   );
 }
