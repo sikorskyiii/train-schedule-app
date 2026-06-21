@@ -13,6 +13,11 @@ export class AuthController {
         return this.authService.register(email, password);
     }
 
+    @Post('auth/register-admin')
+    async registerAdmin(@Body() { email, password, secret }: RegisterDTO & { secret: string }) {
+        return this.authService.registerAdmin(email, password, secret);
+    }
+
     @Post('auth/login')
     @HttpCode(200)
     async login(@Body() { email, password }: LoginDTO) {
