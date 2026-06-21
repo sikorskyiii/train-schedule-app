@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./auth";
+import { getToken, removeToken } from "./auth";
 
 const axiosInstance = axios.create({
     baseURL: "/api",
@@ -17,5 +17,18 @@ axiosInstance.interceptors.request.use((config) => {
 }, (error) => {
     throw error;
 });
+
+axiosInstance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            removeToken();
+            if (typeof window !== "undefined") {
+                window.location.href = "/login";
+            }
+        }
+        return Promise.reject(error);
+    }
+);
 
 export default axiosInstance;
