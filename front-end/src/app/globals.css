@@ -17,23 +17,21 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start дозволяє mx-auto на дочірніх flex-items */
   align-items: stretch;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Центруючий контейнер — блочний елемент усередині нього дає коректний mx-auto */
 .page-wrapper {
   width: 100%;
 }
 
 .container-inner {
   width: 100%;
-  max-width: 56rem; /* 896px */
+  max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
-  /* padding задаємо виключно через Tailwind px-* щоб уникнути конфліктів */
+
 }
 
 * {
@@ -161,20 +159,26 @@ a {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-jost), "Inter", system-ui, sans-serif;
     font-size: 16px;
     letter-spacing: 0.01em;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-jost), "Inter", system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.01em;
   }
 }
 
-/* ── Hero ── */
 .hero-bg {
   background: #060d18;
   background-image:
@@ -183,17 +187,15 @@ a {
   overflow: hidden;
 }
 
-/* Dot grid texture */
 .hero-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.032) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;
 }
 
-/* Central radial glow */
 .hero-bg::after {
   content: '';
   position: absolute;
@@ -202,18 +204,16 @@ a {
   transform: translateX(-50%);
   width: 900px;
   height: 480px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(79,140,255,0.13) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(79, 140, 255, 0.13) 0%, transparent 65%);
   pointer-events: none;
 }
 
-/* Gradient fade hero → content */
 .hero-fade {
   height: 64px;
   background: linear-gradient(to bottom, #070e1c, var(--background));
   margin-top: -1px;
 }
 
-/* Auth pages dark brand strip */
 .auth-hero {
   background: linear-gradient(175deg, #060d18 0%, #0c1f3c 100%);
   position: relative;
@@ -224,7 +224,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 24px 24px;
   pointer-events: none;
 }
@@ -237,6 +237,6 @@ a {
   transform: translateX(-50%);
   width: 600px;
   height: 300px;
-  background: radial-gradient(ellipse at 50% 0%, rgba(79,140,255,0.15) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(79, 140, 255, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
