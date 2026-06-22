@@ -146,7 +146,7 @@ export default function TrainForm({ onSubmit, onCancel, initialData }: Props) {
                         type="datetime-local"
                         {...register("arrivalTime", { required: "Required" })}
                         className={inputCls}
-                        style={{ padding: '0.75rem 1rem' }}
+                        style={{ padding: '0.75rem 1rem', width: '100%', maxWidth: '100%', boxSizing: 'border-box', WebkitAppearance: 'none', appearance: 'none' }}
                     />
                     {errors.arrivalTime && (
                         <p className="text-destructive text-[11px] mt-1.5">{errors.arrivalTime.message}</p>
