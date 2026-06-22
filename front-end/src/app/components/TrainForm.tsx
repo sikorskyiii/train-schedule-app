@@ -68,7 +68,7 @@ export default function TrainForm({ onSubmit, onCancel, initialData }: Props) {
                 </button>
             </div>
             <div className="bg-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                style={{ padding: '2rem', gap: '1.5rem' }}>
+                style={{ padding: '1.25rem', gap: '1.25rem' }}>
                 <div>
                     <FieldLabel>Train Number</FieldLabel>
                     <input
@@ -89,7 +89,7 @@ export default function TrainForm({ onSubmit, onCancel, initialData }: Props) {
                         rules={{ required: "Required" }}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value || ""}>
-                                <SelectTrigger style={{ padding: '0.75rem 1rem', height: 'auto' }} className="text-[13px] rounded-xl border-border bg-background focus:ring-primary/12 focus:border-primary">
+                                <SelectTrigger style={{ padding: '0.75rem 1rem', height: 'auto', width: '100%' }} className="text-[13px] rounded-xl border-border bg-background focus:ring-primary/12 focus:border-primary">
                                     <SelectValue placeholder="Select station" />
                                 </SelectTrigger>
                                 <SelectContent className="rounded-xl border-border bg-card" style={{ padding: '0.375rem' }}>
@@ -113,7 +113,7 @@ export default function TrainForm({ onSubmit, onCancel, initialData }: Props) {
                         rules={{ required: "Required" }}
                         render={({ field }) => (
                             <Select onValueChange={field.onChange} value={field.value || ""}>
-                                <SelectTrigger style={{ padding: '0.75rem 1rem', height: 'auto' }} className="text-[13px] rounded-xl border-border bg-background focus:ring-primary/12 focus:border-primary">
+                                <SelectTrigger style={{ padding: '0.75rem 1rem', height: 'auto', width: '100%' }} className="text-[13px] rounded-xl border-border bg-background focus:ring-primary/12 focus:border-primary">
                                     <SelectValue placeholder="Select station" />
                                 </SelectTrigger>
                                 <SelectContent className="rounded-xl border-border bg-card" style={{ padding: '0.375rem' }}>
