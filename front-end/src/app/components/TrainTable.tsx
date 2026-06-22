@@ -55,10 +55,10 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                         onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06)')}
                         onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)')}
                     >
-                        <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-primary opacity-60
+                        <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-primary opacity-60
                                         group-hover:opacity-100 transition-opacity rounded-l-2xl" />
 
-                        <div style={{ paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}
+                        <div style={{ paddingLeft: '1.25rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}
                              className="sm:pl-20 sm:pr-8 sm:py-6">
 
                             {/* Mobile top row */}
@@ -117,7 +117,7 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                                        style={{ fontSize: 'clamp(20px, 5vw, 40px)' }}>
                                         {depTime}
                                     </p>
-                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate" style={{ marginTop: '0.4rem', maxWidth: '80px' }}>
+                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate" style={{ marginTop: '0.4rem', maxWidth: '72px' }}>
                                         {train.fromStation}
                                     </p>
                                 </div>
@@ -145,7 +145,7 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                                        style={{ fontSize: 'clamp(20px, 5vw, 40px)' }}>
                                         {arrTime}
                                     </p>
-                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate ml-auto" style={{ marginTop: '0.4rem', maxWidth: '80px' }}>
+                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate ml-auto" style={{ marginTop: '0.4rem', maxWidth: '72px' }}>
                                         {train.toStation}
                                     </p>
                                 </div>
