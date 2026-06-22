@@ -31,7 +31,7 @@ const Navbar = () => {
             className="sticky top-0 z-50 border-b border-white/[0.07] page-wrapper"
             style={{ background: '#060d18' }}
         >
-            <div className="container-inner px-5 sm:px-10 h-[56px] sm:h-[60px] flex items-center justify-between">
+            <div className="container-inner flex items-center justify-between" style={{ height: '56px', paddingLeft: '1.25rem', paddingRight: '1.25rem' }}>
                 <Link href="/" className="flex items-center gap-2 group shrink-0">
                     <div className="w-7 h-7 rounded-[8px] flex items-center justify-center bg-blue-500 group-hover:bg-blue-400 transition-colors shrink-0">
                         <Train size={13} className="text-white" strokeWidth={2.5} />
