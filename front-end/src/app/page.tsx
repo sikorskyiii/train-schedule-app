@@ -115,7 +115,7 @@ export default function Home() {
 
       <div className="hero-fade page-wrapper" />
       <div className="page-wrapper">
-        <div className="container-inner pb-16 sm:pb-20" style={{ paddingLeft: '1.25rem', paddingRight: '1.25rem' }}>
+        <div className="container-inner" style={{ padding: '0 1.25rem 4rem' }}>
 
           {showForm && (
             <div style={{ marginBottom: '2rem' }}>

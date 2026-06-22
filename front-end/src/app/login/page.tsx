@@ -22,7 +22,7 @@ const LoginPage = () => {
         /* page-wrapper → full-width flex item; inner div → block centering */
         <div className="page-wrapper min-h-[calc(100vh-56px)] sm:min-h-[calc(100vh-60px)]
                         flex items-center justify-center bg-background">
-            <div className="w-full px-5 sm:px-6 py-12 flex flex-col items-center">
+            <div className="w-full flex flex-col items-center" style={{ padding: '3rem 1.25rem' }}>
 
                 {/* Brand mark */}
                 <div className="flex flex-col items-center" style={{ marginBottom: '2.5rem' }}>
