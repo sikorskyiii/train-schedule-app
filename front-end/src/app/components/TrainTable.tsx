@@ -58,41 +58,41 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                         <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-primary opacity-60
                                         group-hover:opacity-100 transition-opacity rounded-l-2xl" />
 
-                        <div className="pl-16 pr-6 py-5 sm:pl-20 sm:pr-8 sm:py-6">
+                        <div style={{ paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '1rem', paddingBottom: '1rem' }}
+                             className="sm:pl-20 sm:pr-8 sm:py-6">
 
-                            <div className="flex items-start justify-between gap-3 sm:hidden mb-4">
-                                <div>
-                                    <span className="inline-block px-3.5 py-[5px] rounded-md bg-primary/10
+                            {/* Mobile top row */}
+                            <div className="flex items-center justify-between sm:hidden" style={{ marginBottom: '0.75rem' }}>
+                                <div className="flex items-center gap-2">
+                                    <span className="inline-block px-2.5 py-1 rounded-md bg-primary/10
                                                      text-primary text-xs font-bold uppercase tracking-wider">
                                         {train.trainNumber}
                                     </span>
-                                    <p className="text-xs text-muted-foreground/60 mt-2 font-medium">
-                                        {depDate}
-                                    </p>
+                                    <p className="text-xs text-muted-foreground/60 font-medium">{depDate}</p>
                                 </div>
 
                                 {isAuth && (
-                                    <div className="flex items-center gap-2 shrink-0" style={{ paddingRight: '0.75rem' }}>
+                                    <div className="flex items-center gap-1.5 shrink-0">
                                         <button
                                             onClick={() => onEdit(train)}
-                                            style={{ padding: '0.5rem 1.25rem', gap: '0.5rem' }}
-                                            className="flex items-center text-xs font-semibold
+                                            style={{ padding: '0.4rem 0.6rem' }}
+                                            className="flex items-center gap-1 text-xs font-semibold
                                                        rounded-lg border border-border text-muted-foreground
-                                                       hover:border-primary/50 hover:text-primary hover:bg-primary/5 transition-all"
+                                                       hover:border-primary/50 hover:text-primary transition-all"
                                         >
                                             <Pencil size={11} strokeWidth={2} />
-                                            Edit
+                                            <span>Edit</span>
                                         </button>
                                         {isAdmin && (
                                             <button
                                                 onClick={() => onDelete(train.id!)}
-                                                style={{ padding: '0.5rem 1.25rem', gap: '0.5rem' }}
-                                                className="flex items-center text-xs font-semibold
+                                                style={{ padding: '0.4rem 0.6rem' }}
+                                                className="flex items-center gap-1 text-xs font-semibold
                                                            rounded-lg text-destructive bg-destructive/8
                                                            hover:bg-destructive hover:text-white transition-all"
                                             >
                                                 <Trash2 size={11} strokeWidth={2} />
-                                                Delete
+                                                <span>Del</span>
                                             </button>
                                         )}
                                     </div>
@@ -113,11 +113,11 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                                 <div className="hidden sm:block w-px h-12 bg-border/60 shrink-0" />
 
                                 <div className="shrink-0">
-                                    <p className="text-[28px] sm:text-[36px] lg:text-[40px] font-black tabular-nums
-                                                  text-foreground leading-none tracking-[-0.02em]">
+                                    <p className="font-black tabular-nums text-foreground leading-none tracking-[-0.02em]"
+                                       style={{ fontSize: 'clamp(20px, 5vw, 40px)' }}>
                                         {depTime}
                                     </p>
-                                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 font-medium truncate max-w-[90px] sm:max-w-[120px]">
+                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate" style={{ marginTop: '0.4rem', maxWidth: '80px' }}>
                                         {train.fromStation}
                                     </p>
                                 </div>
@@ -141,11 +141,11 @@ export default function TrainTable({ trains, isAuth, isAdmin, onEdit, onDelete }
                                 </div>
 
                                 <div className="shrink-0 text-right">
-                                    <p className="text-[28px] sm:text-[36px] lg:text-[40px] font-black tabular-nums
-                                                  text-foreground leading-none tracking-[-0.02em]">
+                                    <p className="font-black tabular-nums text-foreground leading-none tracking-[-0.02em]"
+                                       style={{ fontSize: 'clamp(20px, 5vw, 40px)' }}>
                                         {arrTime}
                                     </p>
-                                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 font-medium truncate max-w-[90px] sm:max-w-[120px] ml-auto">
+                                    <p className="text-xs sm:text-sm text-muted-foreground font-medium truncate ml-auto" style={{ marginTop: '0.4rem', maxWidth: '80px' }}>
                                         {train.toStation}
                                     </p>
                                 </div>
